@@ -12,9 +12,27 @@ On joue à quoi ?
 2 - Taiko
 3 - Project Diva
 4 - Rocksmith
-5 - Bust a Groove
-6 - Space Channel 5
+5 - Autre
 "
+
+$talk = Read-Host "
+On talk musique ? (y/n)
+"
+if ($talk -eq 'y') {
+  $talkmsg = "Talk Music +"
+  }
+else {   
+  $talkmsg = "" 
+  }
+
+Function Ask-Manette { 
+Read-Host "
+  T'as allumé la manette ? (y/n)"
+  if ($manette -eq 'y') {
+   Write-Host "
+   Ok fais pas le malin..."
+   }
+}
 
 if ($location -eq '1') {
   $loctweet = "Sur la chaine perso : https://www.twitch.tv/undead_woody"
@@ -40,46 +58,39 @@ if ($game -eq '1') {
   Start-Process 'E:\Games\Phase Shift\phase_shift.exe' -WorkingDirectory "E:\Games\Phase Shift\"
   Start-Process "C:\Users\Undead Woody\Desktop\start chrome.bat" 
   $tweet = "'Live Guitar Hero. Maintenant. $loctweet Rock and Roll.'"
-  $title = "!title Guitar Hero - Vous décidez de la playlist !songlist"
+  $title = "!title $talkmsg Guitar Hero - Vous décidez de la playlist !songlist"
   $gamename = "!game Guitar Hero"
   }
 
 if ($game -eq '2') {
   $tweet = "'Live Taiko. Maintenant. $loctweet Boum Boum.'"
-  $title = "!title Taiko - Pincesse Tam Tam"
-  $gamename = "!game Taiko no Tatsujin: Wii U Version"
+  $title = "!title $talkmsg Taiko - Pincesse Tam Tam"
+  $gamename = "!game Taiko no Tatsujin: Session de Dodon ga Don!"
   }
 
 if ($game -eq '3') {
   $tweet = "'Live Project Diva. Maintenant. $loctweet Miku Miku.'"
-  $title = "!title Project Diva - L'homme weaboo vs the world"
+  $title = "!title $talkmsg Project Diva - L'homme weaboo vs the world"
   $gamename = "!game Hatsune Miku: Project Diva Future Tone"
   }
 
 if ($game -eq '4') {
   $tweet = "'Live Rocksmith. Maintenant. $loctweet On passe aux choses sérieuses.'"
-  $title = "!title Rocksmith - On sort la vraie gratte"
+  $title = "!title $talkmsg Rocksmith - On sort les vrais instrus"
   $gamename = "!game Rocksmith 2014"
   Start-Process 'E:\Games\Rocksmith 2014\Rocksmith2014.exe' -WorkingDirectory "E:\Games\Rocksmith 2014"
   }
 
 if ($game -eq '5') {
-  $tweet = "'Live Bust a Groove. Maintenant. $loctweet Gros moment de nostalgie.'"
-  $title = "!title Bust a Groove - Jean Louis Breakdance in da place"
-  $gamename = "!game Bust A Groove"
-  $manette = Read-Host "
-  T'as allumé la manette ? (y/n)"
-  if ($manette -eq 'y') {
-   Write-Host "
-   Ok fais pas le malin..."
-   }
-  Start-Process 'E:\Download\Emulateur PS1 - EPSXE - PSX - DV\PSX\psxfin.exe' -WorkingDirectory "E:\Download\Emulateur PS1 - EPSXE - PSX - DV\PSX"
-  }
-
-if ($game -eq '6') {
-  $tweet = "'Live Space Channel 5 Part 2. Maintenant. $loctweet Chu Chu Chu.'"
-  $title = "!title Space Channel 5: Part 2 - Un train qui fait Chu Chu"
-  $gamename = "!game Space Channel 5: Part 2"
+  $askname = Read-Host "
+    C'est quoi le nom du jeu ?
+  "
+  $asktitle = Read-Host "
+    C'est quoi le titre du stream ?
+  "
+  $tweet = "'Live $askname. Maintenant. $loctweet Go go go.'"
+  $title = "!title $talkmsg $asktitle"
+  $gamename = "!game $askname"
   }
 
 $confirmation = Read-Host "
